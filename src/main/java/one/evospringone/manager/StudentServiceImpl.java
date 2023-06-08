@@ -42,13 +42,10 @@ List<StudentDto> dtos=students.stream().map(student -> mapper.map(student,Studen
     }
 
     @Override
-    public StudentDto createDto(StudentDto dto,Long id) {
+    public StudentDto createDto(StudentDto dto) {
         Student entitiy=mapper.map(dto, Student.class);
 
-        School school=screpository.findById(id).orElseThrow(()->{
-            throw new RuntimeException("no");
-        });
-        entitiy.setSchool(school);
+
         repository.save(entitiy);
 
         return mapper.map(entitiy,StudentDto.class);
@@ -70,11 +67,12 @@ List<StudentDto> dtos=students.stream().map(student -> mapper.map(student,Studen
     @Override
     public StudentDto update(Long id, StudentDto dto) {
         //id olub olmamasini yoxlayir
-        repository.findById(id) .ifPresentOrElse(entitiy-> dto.setId(entitiy.getId()),
-                ()-> {
-            throw new RuntimeException("not found stundent");
-        });
+
         Student entitiy=mapper.map(dto, Student.class);
+        School school=screpository.findById(id).orElseThrow(()->{
+            throw new RuntimeException("no");
+        });
+
         repository.save(entitiy);
 
         return mapper.map(entitiy,StudentDto.class);

@@ -20,7 +20,7 @@ public class SchoolServiceImpl implements SchoolService {
     @Override
     public List<SchoolDto> getAll() {
         List<School> schools=repository.findAll();
-        List<SchoolDto> dtos=schools.stream().map(school -> mapper.map(schools,SchoolDto.class)).collect(Collectors.toList());
+        List<SchoolDto> dtos=schools.stream().map(school -> mapper.map(school,SchoolDto.class)).collect(Collectors.toList());
         return dtos;
     }
 
@@ -39,7 +39,7 @@ public class SchoolServiceImpl implements SchoolService {
 
     @Override
     public SchoolDto update(Long id, SchoolDto dto) {
-        repository.findById(id).ifPresentOrElse(school -> school.setId(dto.getId()),
+        repository.findById(id).ifPresentOrElse(school -> dto.setId(school.getId()),
                 ()-> {
             throw new RuntimeException("not found School");
                 });
@@ -57,9 +57,8 @@ public class SchoolServiceImpl implements SchoolService {
            System.out.println("Silindi:)");
        }
 
-    else {
         throw new RuntimeException("Not Fonud School");
-       }
+
 
     }
 }

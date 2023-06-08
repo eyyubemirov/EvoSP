@@ -22,7 +22,8 @@ public class Student {
 
     private String surname;
     @ManyToOne
-    @JoinColumn(name = "school_id")
+    @JoinColumn(name = "school_id",referencedColumnName = "id")//referencedColumnName = "id"
+    // o demekdiki men postmanda request atanda school:{id:1} yazanda 1 ci id uygun melumatlar getirsin
     private School school;
 
 }

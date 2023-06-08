@@ -23,8 +23,8 @@ public class StudentController {
         return service.getById(id);
     }
     @PostMapping("/create")
-    public  StudentDto createDto(@RequestBody StudentDto dto, @RequestParam("id") Long schoolId){
-        return service.createDto(dto,schoolId);
+    public  StudentDto createDto(@RequestBody StudentDto dto){
+        return service.createDto(dto);
     }
 
     @DeleteMapping("delete/{id}")
