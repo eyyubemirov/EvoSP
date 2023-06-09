@@ -20,6 +20,7 @@ public class SchoolController {
 
     @GetMapping("/get/{id}")
     public SchoolDto getById(@PathVariable Long id) {
+
         return service.getById(id);
     }
 

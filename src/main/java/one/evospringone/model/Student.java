@@ -5,6 +5,7 @@ import jdk.dynalink.linker.LinkerServices;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import one.evospringone.dto.SchoolDto;
 
 import java.util.List;
 
@@ -18,12 +19,15 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String name;
 
+    @Column(nullable = false)
     private String surname;
     @ManyToOne
-    @JoinColumn(name = "school_id",referencedColumnName = "id")//referencedColumnName = "id"
-    // o demekdiki men postmanda request atanda school:{id:1} yazanda 1 ci id uygun melumatlar getirsin
+    //referencedColumnName = "id"
+    //o demekdiki men postmanda request atanda school:{id:1} yazanda 1 ci id uygun melumatlar getirsin
+    @JoinColumn(name = "university_id",referencedColumnName = "id")
     private School school;
 
 }

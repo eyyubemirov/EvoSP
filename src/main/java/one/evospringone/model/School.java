@@ -9,14 +9,16 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "school")
+@Table(name = "university")
 public class School {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
-   private String name;
-   private String city;
+    @Column(nullable = false)
+    private String name;
+    @Column(nullable = false)
+    private String city;
 
 
 
